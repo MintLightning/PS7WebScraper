@@ -1,0 +1,46 @@
+there's 4 buttons:
+
+button "Scrape Course": 
+triggers a function that does the following:
+ the function receives the name of the course as an argument and returns the scraped course description & components list
+ note that this function will be used for another button as well
+ 1. go to the https://catalog.utah.edu/#/home page
+ 2. click on "Courses" in the left nav panel
+ 3. get the user input text from the "Course to scrape" text box in the GUI & remove any spaces
+ 4. select the "Search Catalog" input box & sendkeys the course input
+ 5. hit "enter" to complete the search
+ 6. from the search results page, find & click the link to the course page
+ 7. scrape course description from this page
+ 8. also scrape the components list
+ 9. return the course description & components list
+once the course description is returned, add it to the output text box in the GUI
+
+button "Scrape Courses":
+compile a course schedule URL for the user input year and semester by concatenating hard-coded strings with user input:
+ 1. "https://student.apps.utah.edu/uofu/stu/ClassSchedules/main/1"
+ 2. 2-digit year input
+ 3. Spring="4", Summer="6", Fall="8"
+ 4. "/class_list.html?subject=CS"
+go to the URL
+find and click the link with link text "Seating availability for all CS classes"
+from the seating availability page, scrape the table for: subject, catalog#, section#, title, enrollment cap, wait list, currently enrolled, and seats available
+throw out any rows with catalog# <1000 or >6999
+for the first n courses:
+ 1. run the course description scraper function
+ 2. if the components list does not include "Lecture" or "Seminar", throw out the scraped info
+ 3. add the course description to the output text box in the GUI
+
+button "Save to CSV": 
+enabled only after the "Scrape Courses" has been clicked and finished
+prompt user for a file name
+use this exact column headers "Course Semester,Course Year,Course Dept,Course Number,CourseTitle,Course Instructors UNID,Course Credits,Course Enrollment,Course Description"
+process all scraped info as text & be sure to escape all special characters as needed
+also trim all leading and trailing whitespace
+
+button "Save to Web":
+enabled only after the "Scrape Courses" has been clicked finished
+idk how this works but it's in the spec section 3.4.1
+
+in addition to the buttons functionality, you'll need to rig up the input boxes' variable names to point at the right thing
+all of the input boxes should have a default value. this has been set using the forms visual GUI properties "text" variable
+you'll also need to write a README that gives instructions for how to use the program and explains your choice of implicit wait length (5 seconds)
