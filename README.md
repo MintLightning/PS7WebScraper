@@ -9,7 +9,7 @@ Commit Tag: ?
 Project:    PS7 Web Scraper
 Copyright:  CS 4540 and McFarlane - This work may not be copied for use in Academic Coursework.
 
-# Overview of the TA Application Functionality 
+# Overview of the Web Scraper Functionality 
 
 
 # Comments to Evaluators:
